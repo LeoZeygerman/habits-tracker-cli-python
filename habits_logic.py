@@ -11,7 +11,9 @@ def add_habit():
     habit = {
         'id': new_id,
         'name': name,
-        'completed': False
+        'completed': False,
+        'streak': 0,
+        'last_complete': None
     }
     data.append(habit)
     save_data(data)
@@ -20,12 +22,15 @@ def add_habit():
 def show_habits():
     data = load_data()
     completed = None
+    last_complete = None
     for item in data:
         if item['completed'] == False:
             completed = 'Не выполнена.'
         else:
             completed = 'Выполнена.'
-        habit_object = Habit(item['id'], item['name'], completed)
+        if item['last_complete'] == None:
+            last_complete = 'Нет'
+        habit_object = Habit(item['id'], item['name'], completed, item['streak'], last_complete)
         habit_object.show_habit()    
     
 def completed():
