@@ -36,6 +36,17 @@ def completed():
         if choice == item['id']:
             item['completed'] = True
             save_data(data)
+        else:
+            print('Привычка отсутствует')
     print('Привычка отмечена!')
-            
+    
+def delete():
+    data = load_data()
+    show_habits()
+    choice = int(input('Введите номер привычки, которую хотите удалить: '))
+    for item in data:
+        if choice == item['id']:
+            data.remove(item)
+            save_data(data)
+    print('Привычка успешно удалена.')
     

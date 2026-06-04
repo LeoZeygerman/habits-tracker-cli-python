@@ -1,12 +1,12 @@
 from storage import save_data, load_data
-from habits_logic import add_habit, show_habits, completed
+from habits_logic import add_habit, show_habits, completed, delete
 
 while True:
     try:
         print('1.Добавить привычку')
         print('2.Показать привычки')
         print('3.Отметить выполнение привычки')
-        print('3.Удалить привычку')
+        print('4.Удалить привычку')
         
         choice = int(input('Ваш выбор: '))
         
@@ -20,7 +20,7 @@ while True:
             completed()
         
         if choice == 4:
-            pass
+            delete()
         
     except ValueError:
         print('Ошибка при вводе.')
