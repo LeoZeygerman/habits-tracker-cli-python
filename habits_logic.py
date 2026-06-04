@@ -24,7 +24,18 @@ def show_habits():
         if item['completed'] == False:
             completed = 'Не выполнена.'
         else:
-            completed = 'Выполнена'
+            completed = 'Выполнена.'
         habit_object = Habit(item['id'], item['name'], completed)
         habit_object.show_habit()    
+    
+def completed():
+    data = load_data()
+    show_habits()
+    choice = int(input('Введите номер привычки, которую выполнили: '))
+    for item in data:
+        if choice == item['id']:
+            item['completed'] = True
+            save_data(data)
+    print('Привычка отмечена!')
+            
     
