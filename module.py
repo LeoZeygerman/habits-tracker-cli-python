@@ -9,3 +9,6 @@ class Habit:
         
     def show_habit(self):
         print(f'Номер привычки: {self.id} | Привычка: {self.name} | Выполнение: {self.completed} \n Серия: {self.streak} \n Последнее выполнение: {self.last_complete}')
+        
+    def streak(self, today):
+        pass

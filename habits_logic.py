@@ -1,5 +1,6 @@
 from storage import save_data, load_data
 from module import Habit
+from datetime import date
 
 def add_habit():
     name = input('Введите название привычки: ')
@@ -30,16 +31,20 @@ def show_habits():
             completed = 'Выполнена.'
         if item['last_complete'] == None:
             last_complete = 'Нет'
+        else:
+            last_complete = item['last_complete']
         habit_object = Habit(item['id'], item['name'], completed, item['streak'], last_complete)
         habit_object.show_habit()    
     
 def completed():
     data = load_data()
+    today = date.today()
     show_habits()
     choice = int(input('Введите номер привычки, которую выполнили: '))
     for item in data:
         if choice == item['id']:
             item['completed'] = True
+            item['last_complete'] = today.isoformat()
             save_data(data)
         else:
             print('Привычка отсутствует')
