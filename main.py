@@ -1,5 +1,5 @@
 from storage import save_data, load_data
-from habits_logic import add_habit
+from habits_logic import add_habit, show_habits
 
 while True:
     try:
@@ -14,7 +14,7 @@ while True:
             add_habit()
         
         if choice == 2:
-            pass
+            show_habits()
         
         if choice == 3:
             pass

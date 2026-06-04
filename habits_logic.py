@@ -1,4 +1,5 @@
 from storage import save_data, load_data
+from module import Habit
 
 def add_habit():
     name = input('Введите название привычки: ')
@@ -6,7 +7,7 @@ def add_habit():
     if len(data) == 0:
         new_id = 1
     else:
-        new_id = data[-1]['new_id'] + 1
+        new_id = data[-1]['id'] + 1
     habit = {
         'id': new_id,
         'name': name,
@@ -15,3 +16,15 @@ def add_habit():
     data.append(habit)
     save_data(data)
     print('Привычка успешно добавлена.')
+    
+def show_habits():
+    data = load_data()
+    completed = None
+    for item in data:
+        if item['completed'] == False:
+            completed = 'Не выполнена.'
+        else:
+            completed = 'Выполнена'
+        habit_object = Habit(item['id'], item['name'], completed)
+        habit_object.show_habit()    
+    
