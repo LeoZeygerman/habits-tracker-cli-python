@@ -46,6 +46,8 @@ def completed():
             item['completed'] = True
             item['last_complete'] = today.isoformat()
             save_data(data)
+            habit_object = Habit(item['id'], item['name'], completed, item['streak'], item['last_complete'])
+            habit_object.days_for_streak()
         else:
             print('Привычка отсутствует')
     print('Привычка отмечена!')

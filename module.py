@@ -20,7 +20,7 @@ class Habit:
             self.streak += 1
             print(f'Ваша серия составляет: {self.streak}')
         elif difference == 0:
-            print('Вы уже отмечали эту привычку!')
+            print('Отмечено сегодня')
         elif difference > 0:
             self.streak = 0
             print(f'Серия утеряна: {self.streak}')
