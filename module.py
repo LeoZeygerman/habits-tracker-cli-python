@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 class Habit:
     
@@ -7,7 +7,7 @@ class Habit:
         self.name = name
         self.completed = completed
         self.streak = streak
-        self.last_complete = date.fromisoformat(last_complete)
+        self.last_complete = last_complete
         self.best_streak = best_streak
         
     def show_habit(self):
@@ -15,8 +15,11 @@ class Habit:
         
     def days_for_streak(self):
         today = date.today()
-        difference = (today - self.last_complete).days
-        
+        if self.last_complete is None:
+            self.streak = 1
+            return
+        last_date = datetime.strptime(self.last_complete, '%Y-%m-%d').date()
+        difference = (today - last_date).days
         if difference == 1:
             self.streak += 1
             print(f'Ваша серия составляет: {self.streak}')

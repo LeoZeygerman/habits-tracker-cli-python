@@ -34,26 +34,29 @@ def show_habits():
             last_complete = 'Нет'
         else:
             last_complete = item['last_complete']
-        habit_object = Habit(item['id'], item['name'], completed, item['streak'], last_complete, item['best_streak'])
+        habit_object = Habit(item['id'], item['name'], completed, item['streak'], item['last_complete'], item['best_streak'])
         habit_object.show_habit()    
     
 def completed():
+    found = False
     data = load_data()
     today = date.today()
     show_habits()
     choice = int(input('Введите номер привычки, которую выполнили: '))
     for item in data:
         if choice == item['id']:
-            item['completed'] = True
-            item['last_complete'] = today.isoformat()
+            found = True
             habit_object = Habit(item['id'], item['name'], item['completed'], item['streak'], item['last_complete'], item['best_streak'])
             habit_object.days_for_streak()
+            item['completed'] = True
+            item['last_complete'] = today.isoformat()
+            item['streak'] = habit_object.streak
             if item['streak'] > item['best_streak']:
                 item['best_streak'] = item['streak']
             save_data(data)
-            print(f'Привычка отмечена! \n Лучшая серия: {item['best_streak']}')
-        else:
-            print('Привычка отсутствует')
+            print(f'Привычка отмечена! \nЛучшая серия: {item['best_streak']}')
+    if not found:
+        print('Привычка отсутствует')
     
 def delete():
     data = load_data()
