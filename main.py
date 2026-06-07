@@ -7,6 +7,7 @@ while True:
         print('2.Показать привычки')
         print('3.Отметить выполнение привычки')
         print('4.Удалить привычку')
+        print('5.Выйти')
         
         choice = int(input('Ваш выбор: '))
         
@@ -22,5 +23,8 @@ while True:
         if choice == 4:
             delete()
         
+        if choice == 5:
+            exit()
+            
     except ValueError:
         print('Ошибка при вводе.')
